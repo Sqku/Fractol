@@ -10,8 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
-SRC = main.c
+NAME = fractol
+SRC = main.c \
+	  init.c \
+	  key_hook.c \
+	  color.c
 	
 LIB	= libft/libft.a
 
@@ -23,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C libft/ re
-	@$(CC) -o $(NAME) $(OBJ) $(FLAGS) -I. $(LIB) -I minilibx_macos -lmlx -framework OpenGL -framework AppKit
+	@$(CC) -o $(NAME) $(OBJ) $(FLAGS) -I. $(LIB) -I minilibx_macos -lmlx -framework OpenGL -framework AppKit -Os
 
 %.o: %.c
 	@$(CC) -c -o $@ $(FLAGS) $^
