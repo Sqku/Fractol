@@ -12,12 +12,7 @@
 
 #include "fractol.h"
 
-void	redraw(t_env *e)
-{
-	ft_bzero(e->img.data, SIZE_X * SIZE_Y * 4);
-	julia(e);
-	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
-}
+
 
 void	move_x(int keycode, t_env *e)
 {
@@ -49,7 +44,7 @@ void	move_y(int keycode, t_env *e)
 
 void	move_iter(int keycode, t_env *e)
 {
-	if ((keycode == 78) && (e->iter > 1))
+	if ((keycode == 78) && (e->iter > 5))
 	{
 		e->iter -= 5;
 		e->re = 1;

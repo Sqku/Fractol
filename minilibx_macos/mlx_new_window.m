@@ -12,7 +12,7 @@
 
 NSOpenGLPixelFormatAttribute attrs[] =
   {
-    NSOpenGLPFAWindow,
+    //    NSOpenGLPFAWindow,
     NSOpenGLPFADepthSize, 32,
     0
   };
@@ -288,7 +288,7 @@ int get_mouse_button(NSEventType eventtype)
 
   if ((self = [super initWithFrame:rect pixelFormat:pixFmt]) != nil)
     {
-      NSUInteger windowStyle = NSTitledWindowMask | NSClosableWindowMask;
+      NSUInteger windowStyle = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask;
 
       win = [[NSWindowEvent alloc] initWithContentRect:rect
 				   styleMask:windowStyle
@@ -343,7 +343,7 @@ int get_mouse_button(NSEventType eventtype)
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE);
-      pixtexbuff = malloc(sizeof(int)*size_x*size_y);
+      pixtexbuff = malloc(sizeof(unsigned int)*size_x*size_y);
       pixel_nb = size_x*size_y;
       while (pixel_nb--) pixtexbuff[pixel_nb] = 0xFF000000;
       pixel_nb = 0;
@@ -357,7 +357,10 @@ int get_mouse_button(NSEventType eventtype)
       //      printf("pix tex err? 0x%x\n", glGetError());
 
       if (mlx_shaders(&glsl))
-	return ((void *)0);
+	{ 
+	  [pixFmt release];
+	  return ((void *)0);
+	}
 
       glUseProgram(glsl.pixel_program);
       glsl.loc_pixel_texture = glGetUniformLocation(glsl.pixel_program, "texture");
@@ -386,9 +389,9 @@ int get_mouse_button(NSEventType eventtype)
       glFlush();
 
       // Window controller subclass to set title
-      NSWindowController* windowController = [[NSWindowController alloc] initWithWindow:win];
-      [windowController windowTitleForDocumentDisplayName:title];
-      [windowController showWindow:nil];
+      // NSWindowController* windowController = [[NSWindowController alloc] initWithWindow:win];
+      // [windowController windowTitleForDocumentDisplayName:title];
+      // [windowController showWindow:nil];
       // MlxWinController *mlxWinCont = [[MlxWinController alloc] initWin:win andTitle:title];
 
       // after nswindowcontroller who will retake first responder
@@ -396,6 +399,7 @@ int get_mouse_button(NSEventType eventtype)
       //      if (r==YES) printf("responder ok\n"); else printf("responder KO\n");
 
     }
+  [pixFmt release];
   return (self);
 }
 
@@ -584,7 +588,7 @@ void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title)
   str = [NSString stringWithCString:title encoding:NSASCIIStringEncoding];
   //  newwin->winid = [[MlxWin alloc] initWithRect:windowRect andTitle:str andContext:(newwin->next?newwin->next->winid:nil)];
   newwin->winid = [[MlxWin alloc] initWithRect:windowRect andTitle:str];
-  [str release];
+  //  [str release];
 
   return ((void *)newwin);
 }

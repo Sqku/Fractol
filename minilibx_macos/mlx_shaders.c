@@ -54,6 +54,7 @@ int mlx_shaders_pixel(glsl_info_t *glsl)
   length = strlen(source);
   glShaderSource(glsl->pixel_vshader, 1, (const GLchar**)&source, &length);
   glCompileShader(glsl->pixel_vshader);
+  free(source);
 
   glGetShaderiv(glsl->pixel_vshader, GL_COMPILE_STATUS, &action_ok);
   if (!action_ok) {
@@ -74,6 +75,7 @@ int mlx_shaders_pixel(glsl_info_t *glsl)
   length = strlen(source);
   glShaderSource(glsl->pixel_fshader, 1, (const GLchar**)&source, &length);
   glCompileShader(glsl->pixel_fshader);
+  free(source);
 
   glGetShaderiv(glsl->pixel_fshader, GL_COMPILE_STATUS, &action_ok);
   if (!action_ok) {
@@ -123,6 +125,7 @@ int mlx_shaders_image(glsl_info_t *glsl)
   length = strlen(source);
   glShaderSource(glsl->image_vshader, 1, (const GLchar**)&source, &length);
   glCompileShader(glsl->image_vshader);
+  free(source);
 
   glGetShaderiv(glsl->image_vshader, GL_COMPILE_STATUS, &action_ok);
   if (!action_ok) {
@@ -142,6 +145,7 @@ int mlx_shaders_image(glsl_info_t *glsl)
   length = strlen(source);
   glShaderSource(glsl->image_fshader, 1, (const GLchar**)&source, &length);
   glCompileShader(glsl->image_fshader);
+  free(source);
 
   glGetShaderiv(glsl->image_fshader, GL_COMPILE_STATUS, &action_ok);
   if (!action_ok) {
@@ -194,6 +198,7 @@ int mlx_shaders_font(glsl_info_t *glsl)
   length = strlen(source);
   glShaderSource(glsl->font_vshader, 1, (const GLchar**)&source, &length);
   glCompileShader(glsl->font_vshader);
+  free(source);
 
   glGetShaderiv(glsl->font_vshader, GL_COMPILE_STATUS, &action_ok);
   if (!action_ok) {
@@ -215,6 +220,7 @@ int mlx_shaders_font(glsl_info_t *glsl)
   length = strlen(source);
   glShaderSource(glsl->font_fshader, 1, (const GLchar**)&source, &length);
   glCompileShader(glsl->font_fshader);
+  free(source);
 
   glGetShaderiv(glsl->font_fshader, GL_COMPILE_STATUS, &action_ok);
   if (!action_ok) {

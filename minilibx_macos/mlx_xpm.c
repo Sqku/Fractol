@@ -211,6 +211,7 @@ void	*mlx_int_parse_xpm(mlx_ptr_t *xvar,void *info,int info_size,char *(*f)())
 	  colors[i].col = rgb_col; // rgb_col>=0?mlx_get_color_value(xvar,rgb_col):rgb_col;
 	}
       free(tab);
+      tab = 0;
     }
 
   if (!(img = mlx_new_image(xvar,width,height)))
@@ -305,7 +306,6 @@ void	*mlx_xpm_file_to_image(mlx_ptr_t *xvar,char *file,int *width,int *height)
   char	*ptr;
   mlx_img_list_t	*img;
 
-  fd = -1;
   if ((fd = open(file,O_RDONLY))==-1 || (size = lseek(fd,0,SEEK_END))==-1 ||
       (ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0))==
       (void *)MAP_FAILED)

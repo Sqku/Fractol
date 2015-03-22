@@ -34,7 +34,7 @@
   win = mlx_ptr->win_list;
   while (win)
     {
-      if (win->nb_flush > 0 && win->nb_flush == win->nb_flush_prev)
+      if (win->nb_flush > 0)
 	{
 	  [(id)win->winid selectGLContext];
 	  [(id)win->winid mlx_gl_draw];

@@ -14,7 +14,12 @@ NAME = fractol
 SRC = main.c \
 	  init.c \
 	  key_hook.c \
-	  color.c
+	  color.c \
+	  loop_hook.c \
+	  julia.c \
+	  mandelbrot.c \
+	  douady.c
+
 	
 LIB	= libft/libft.a
 
