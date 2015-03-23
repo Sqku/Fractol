@@ -58,7 +58,7 @@ void	init_v(t_env *e)
 {
 	e->rc = 0;
 	e->ic = 0;
-	e->iter = 100;
+	e->iter = 50;
 	e->zoom = 300;
 	e->move_x = 0;
 	e->move_y = 0;
