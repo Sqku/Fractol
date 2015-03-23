@@ -12,8 +12,6 @@
 
 #include "fractol.h"
 
-
-
 void	move_x(int keycode, t_env *e)
 {
 	if (keycode == 123)

@@ -30,7 +30,7 @@ void	redraw(t_env *e)
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
 }
 
-int 	loop_hook(t_env *e)
+int		loop_hook(t_env *e)
 {
 	if (e->re)
 	{
